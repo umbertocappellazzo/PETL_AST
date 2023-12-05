@@ -15,6 +15,14 @@ This repo also contains the code for additional experiments we carried out (like
 
 
 
+<div align="center">
+
+<img src="images/AST_main.png"/>
+
+</div>
+
+
+
 ## Environment setup
 The requested libraries for running the experiments are listed in the requirements.txt file. Run the command below to install them.   
 
