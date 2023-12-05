@@ -17,7 +17,7 @@ This repo also contains the code for additional experiments we carried out (like
 
 <div align="center">
 
-|     <img src="images/AST_main.png" width='500'/>    |
+|     <img src="images/AST_main.png" width='450'/>    |
 | :-------------------------------------------------: |
 | **Illustration of the AST model and the PETL methods.** |
 
