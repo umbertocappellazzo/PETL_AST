@@ -67,13 +67,16 @@ Finally, if you want to replicate the ablations studies on the best location to 
 
 
 # Contribution to the repository
-While this repository comprises 4 downstream tasks, I'd be more than happy to integrate other downstream tasks/dataset. Feel free to make a PR if you want to add other datasets etc. 
+While this repository comprises three downstream tasks and 4 datasets, I'd be more than happy to integrate other downstream tasks/dataset. Feel free to make a PR if you want to add other datasets etc. 
 
 
 # Contact
 
-Please, reach out to me at: umbertocappellazzo [at] gmail [dot] com. 
+Please, reach out to me at: umbertocappellazzo [at] gmail [dot] com for any question. 
 
+# Acknowledgments
+
+We acknowledge the support of the Digital Research Alliance of Canada (alliancecan.ca).
 
 # Citation
 
