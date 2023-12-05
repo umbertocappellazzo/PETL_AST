@@ -79,9 +79,9 @@ def get_args_parser():
     
     # WANDB args. 
     parser.add_argument('--use_wandb', type= bool, default= False)
-    parser.add_argument('--project_name', type= str, default= 'Prompt-tuning FluentSpeech')
-    parser.add_argument('--exp_name', type= str, default= 'prova_codice_adapter_ablation_FFN-after-parallel_seed10_GPU1')
-    parser.add_argument('--entity', type= str, default= 'umbertocappellazzo')
+    parser.add_argument('--project_name', type= str, default= '')
+    parser.add_argument('--exp_name', type= str, default= '')
+    parser.add_argument('--entity', type= str, default= '')
     
     return parser
 
