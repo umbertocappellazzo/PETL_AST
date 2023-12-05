@@ -1,0 +1,45 @@
+# Optimization params.
+
+lr_adapter: 0.005
+lr_LoRA: 0.005
+lr_FitBit: 0.005
+lr_prompt: 0.01 # Used for SPT, DPT, and Prefix T.
+lr_fullFT: 0.00005
+lr_linear: 0.001
+
+weight_decay: 0.1
+
+
+final_output: 'ALL' # Which tokens are used for the final classification? Options: ['ALL', 'CLS'].
+final_output_prompt_tuning: 'ALL' # Options: ['ALL', 'CLS', 'PROMPTS', 'SPEECH', 'PROMPTS+SPEECH'].
+
+# Prefix Tuning params.
+patch_size: 16
+hidden_size: 768
+
+# Datasets params.
+
+max_len_audio_FSC: 64000
+max_len_AST_FSC: 400
+num_classes_FSC: 31
+batch_size_FSC: 32
+epochs_FSC: 75
+
+max_len_audio_ESC: 80000
+max_len_AST_ESC: 500
+num_classes_ESC: 50
+batch_size_ESC: 32
+epochs_ESC: 50
+
+max_len_audio_US8K: 64000
+max_len_AST_US8K: 400
+num_classes_US8K: 10
+batch_size_US8K: 32
+epochs_US8K: 30
+
+max_len_audio_GSC: 16000
+max_len_AST_GSC: 100
+num_classes_GSC: 35
+batch_size_GSC: 128
+epochs_GSC: 75
+

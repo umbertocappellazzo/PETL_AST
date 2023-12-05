@@ -1,0 +1,8 @@
+numpy
+torch
+wandb
+transformers
+torchaudio
+librosa
+
+
