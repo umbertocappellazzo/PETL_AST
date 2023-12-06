@@ -181,25 +181,3 @@ class FluentSpeech(Dataset):
              'change languageGermannone': 29,
              'bringshoesnone': 30
         }
-
-
-
-
-def trunc(x, max_len):
-    l = len(x)
-    if l > max_len:
-        x = x[l//2-max_len//2:l//2+max_len//2]
-    if l < max_len:
-        x = F.pad(x, (0, max_len-l), value=0.)
-    
-    eps = np.finfo(np.float64).eps
-    sample_rate = 16000
-    n_mels = 40
-    win_len = 25
-    hop_len= 10
-    win_len = int(sample_rate/1000*win_len)
-    hop_len = int(sample_rate/1000*hop_len)
-    mel_spectr = t.MelSpectrogram(sample_rate=16000,
-            win_length=win_len, hop_length=hop_len, n_mels=n_mels)
-    
-    return np.log(mel_spectr(x)+eps) 
