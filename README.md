@@ -1,7 +1,7 @@
 <div align="center">
 
 [![](https://img.shields.io/badge/Code-github.umbertocappellazzo%2FPETL_AST-blue)](https://umbertocappellazzo.github.io/)
-[![]()]()
+[![](https://img.shields.io/badge/Paper-arxiv.2312.03694-red)](https://arxiv.org/abs/2312.03694)
 
 # Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers
 
