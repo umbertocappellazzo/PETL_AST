@@ -22,12 +22,11 @@ class Urban_Sound_8k(Dataset):
         siren, and street_music.
     """
 
-    def __init__(self, data_path, max_len_audio, max_len_AST,split, train_fold_nums=[1,2,3,4,5,6,7,8,9], test_fold_nums=[10], apply_SpecAug= False, few_shot = False, samples_per_class = 1):
+    def __init__(self, data_path, max_len_AST,split, train_fold_nums=[1,2,3,4,5,6,7,8,9], test_fold_nums=[10], apply_SpecAug= False, few_shot = False, samples_per_class = 1):
         if split not in ("train", "test"):
             raise ValueError(f"`train` arg ({split}) must be a bool or train/test.")
             
         self.data_path = os.path.expanduser(data_path)
-        self.max_len_audio = max_len_audio
         self.max_len_AST = max_len_AST
         self.split = split
         self.train_fold_nums = train_fold_nums

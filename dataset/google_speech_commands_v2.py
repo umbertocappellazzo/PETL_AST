@@ -22,12 +22,11 @@ class Google_Speech_Commands_v2(Dataset):
         siren, and street_music.
     """
 
-    def __init__(self, data_path, max_len_audio, max_len_AST, split, apply_SpecAug= False, few_shot = False, samples_per_class = 1):
+    def __init__(self, data_path, max_len_AST, split, apply_SpecAug= False, few_shot = False, samples_per_class = 1):
         if split not in ("train", "valid", "test"):
             raise ValueError(f"`train` arg ({split}) must be a bool or train/valid/test.")
             
         self.data_path = os.path.expanduser(data_path)
-        self.max_len_audio = max_len_audio
         self.max_len_AST = max_len_AST
         self.split = split
         

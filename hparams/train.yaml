@@ -19,25 +19,21 @@ hidden_size: 768
 
 # Datasets params.
 
-max_len_audio_FSC: 64000
 max_len_AST_FSC: 400
 num_classes_FSC: 31
 batch_size_FSC: 32
 epochs_FSC: 75
 
-max_len_audio_ESC: 80000
 max_len_AST_ESC: 500
 num_classes_ESC: 50
 batch_size_ESC: 32
 epochs_ESC: 50
 
-max_len_audio_US8K: 64000
 max_len_AST_US8K: 400
 num_classes_US8K: 10
 batch_size_US8K: 32
 epochs_US8K: 30
 
-max_len_audio_GSC: 16000
 max_len_AST_GSC: 100
 num_classes_GSC: 35
 batch_size_GSC: 128

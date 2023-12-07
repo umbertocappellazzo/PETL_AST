@@ -23,7 +23,7 @@ class FluentSpeech(Dataset):
     FSC includes 30,043 English utterances, recorded at 16 kHz.
     It includes 31 intent classes in total.
     """
-    def __init__(self, data_path, max_len_audio, max_len_AST, train: Union[bool, str] = True, apply_SpecAug= False, few_shot = False, samples_per_class = 1):
+    def __init__(self, data_path, max_len_AST, train: Union[bool, str] = True, apply_SpecAug= False, few_shot = False, samples_per_class = 1):
         if not isinstance(train, bool) and train not in ("train", "valid", "test"):
             raise ValueError(f"`train` arg ({train}) must be a bool or train/valid/test.")
             
@@ -34,7 +34,6 @@ class FluentSpeech(Dataset):
                 self.train = "test"
         if train in ("train", "valid", "test"):
             self.train = train
-        self.max_len_audio = max_len_audio
         self.max_len_AST = max_len_AST
         self.data_path = os.path.expanduser(data_path)
         
@@ -124,14 +123,13 @@ class FluentSpeech(Dataset):
             pathh = os.path.join(base_path, items[1])
             wav,sampling_rate = soundfile.read(pathh)
 
-            if len(wav) > self.max_len_audio:
-                pass
-            else:
-                x.append(processor(wav, sampling_rate= sampling_rate, return_tensors='pt')['input_values'].squeeze(0))
+            
+            
+            x.append(processor(wav, sampling_rate= sampling_rate, return_tensors='pt')['input_values'].squeeze(0))
                 
-                y.append(
-                    self.class_ids[action+obj+location]    
-                )
+            y.append(
+                self.class_ids[action+obj+location]    
+            )
             
         return np.array(x), np.array(y)
     

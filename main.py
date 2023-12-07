@@ -110,25 +110,21 @@ def main(args):
         train_params = yaml.safe_load(file)
     
     if args.dataset_name == 'FSC':
-        max_len_audio = train_params['max_len_audio_FSC']
         max_len_AST = train_params['max_len_AST_FSC']
         num_classes = train_params['num_classes_FSC']
         batch_size = train_params['batch_size_FSC']
         epochs = train_params['epochs_FSC']
     elif args.dataset_name == 'ESC-50':
-        max_len_audio = train_params['max_len_audio_ESC']
         max_len_AST = train_params['max_len_AST_ESC']
         num_classes = train_params['num_classes_ESC']
         batch_size = train_params['batch_size_ESC']
         epochs = train_params['epochs_ESC']
     elif args.dataset_name == 'urbansound8k':
-        max_len_audio = train_params['max_len_audio_US8K']
         max_len_AST = train_params['max_len_AST_US8K']
         num_classes = train_params['num_classes_US8K']
         batch_size = train_params['batch_size_US8K']
         epochs = train_params['epochs_US8K']
     elif args.dataset_name == 'GSC':
-        max_len_audio = train_params['max_len_audio_GSC']
         max_len_AST = train_params['max_len_AST_GSC']
         num_classes = train_params['num_classes_GSC']
         batch_size = train_params['batch_size_GSC']
@@ -164,21 +160,21 @@ def main(args):
         # DATASETS
         
         if args.dataset_name == 'FSC':
-            train_data = FluentSpeech(args.data_path, max_len_audio, max_len_AST, train= True, apply_SpecAug= True, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
-            val_data = FluentSpeech(args.data_path, max_len_audio, max_len_AST, train= "valid")
-            test_data = FluentSpeech(args.data_path, max_len_audio, max_len_AST, train= False)
+            train_data = FluentSpeech(args.data_path, max_len_AST, train= True, apply_SpecAug= True, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
+            val_data = FluentSpeech(args.data_path, max_len_AST, train= "valid")
+            test_data = FluentSpeech(args.data_path, max_len_AST, train= False)
         
         elif args.dataset_name == 'ESC-50': 
-            train_data = ESC_50(args.data_path, max_len_audio, max_len_AST, 'train', train_fold_nums= folds_train[fold], valid_fold_nums= folds_valid[fold], test_fold_nums= folds_test[fold], apply_SpecAug= True, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
-            val_data = ESC_50(args.data_path, max_len_audio, max_len_AST, 'valid', train_fold_nums= folds_train[fold], valid_fold_nums= folds_valid[fold], test_fold_nums= folds_test[fold])
-            test_data = ESC_50(args.data_path, max_len_audio, max_len_AST, 'test', train_fold_nums= folds_train[fold], valid_fold_nums= folds_valid[fold], test_fold_nums= folds_test[fold])
+            train_data = ESC_50(args.data_path, max_len_AST, 'train', train_fold_nums= folds_train[fold], valid_fold_nums= folds_valid[fold], test_fold_nums= folds_test[fold], apply_SpecAug= True, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
+            val_data = ESC_50(args.data_path, max_len_AST, 'valid', train_fold_nums= folds_train[fold], valid_fold_nums= folds_valid[fold], test_fold_nums= folds_test[fold])
+            test_data = ESC_50(args.data_path, max_len_AST, 'test', train_fold_nums= folds_train[fold], valid_fold_nums= folds_valid[fold], test_fold_nums= folds_test[fold])
         elif args.dataset_name == 'urbansound8k':
-            train_data = Urban_Sound_8k(args.data_path, max_len_audio, max_len_AST, 'train', train_fold_nums= folds_train[fold], test_fold_nums= folds_test[fold], apply_SpecAug=True, few_shot=args.is_few_shot_exp, samples_per_class= args.few_shot_samples,)
-            test_data = Urban_Sound_8k(args.data_path, max_len_audio, max_len_AST, 'test', train_fold_nums= folds_train[fold], test_fold_nums= folds_test[fold])
+            train_data = Urban_Sound_8k(args.data_path, max_len_AST, 'train', train_fold_nums= folds_train[fold], test_fold_nums= folds_test[fold], apply_SpecAug=True, few_shot=args.is_few_shot_exp, samples_per_class= args.few_shot_samples,)
+            test_data = Urban_Sound_8k(args.data_path, max_len_AST, 'test', train_fold_nums= folds_train[fold], test_fold_nums= folds_test[fold])
         else:
-            train_data = Google_Speech_Commands_v2(args.data_path, max_len_audio, max_len_AST, 'train', apply_SpecAug= True, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
-            val_data = Google_Speech_Commands_v2(args.data_path, max_len_audio, max_len_AST, 'valid')
-            test_data = Google_Speech_Commands_v2(args.data_path, max_len_audio, max_len_AST, 'test')
+            train_data = Google_Speech_Commands_v2(args.data_path, max_len_AST, 'train', apply_SpecAug= True, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
+            val_data = Google_Speech_Commands_v2(args.data_path, max_len_AST, 'valid')
+            test_data = Google_Speech_Commands_v2(args.data_path, max_len_AST, 'test')
     
         
         train_loader = DataLoader(train_data, batch_size= batch_size, shuffle= True, num_workers= args.num_workers, pin_memory= True, drop_last= False,)

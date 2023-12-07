@@ -23,12 +23,11 @@ class ESC_50(Dataset):
     loosely arranged into 5 major categories. 
     """
 
-    def __init__(self, data_path, max_len_audio, max_len_AST, split, train_fold_nums=[1, 2, 3], valid_fold_nums=[4], test_fold_nums=[5], apply_SpecAug= False, few_shot = False, samples_per_class = 1):
+    def __init__(self, data_path, max_len_AST, split, train_fold_nums=[1, 2, 3], valid_fold_nums=[4], test_fold_nums=[5], apply_SpecAug= False, few_shot = False, samples_per_class = 1):
         if split not in ("train", "valid", "test"):
             raise ValueError(f"`train` arg ({split}) must be a bool or train/valid/test.")
             
         self.data_path = os.path.expanduser(data_path)
-        self.max_len_audio = max_len_audio
         self.max_len_AST = max_len_AST
         self.split = split
         self.train_fold_nums = train_fold_nums
