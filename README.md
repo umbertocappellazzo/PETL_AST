@@ -81,6 +81,12 @@ We acknowledge the support of the Digital Research Alliance of Canada (alliancec
 # Citation
 
 ```latex
-@misc{
+@misc{cappellazzo2023parameterefficient,
+      title={Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers}, 
+      author={Umberto Cappellazzo and Daniele Falavigna and Alessio Brutti and Mirco Ravanelli},
+      year={2023},
+      eprint={2312.03694},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS}
 }
 ```
