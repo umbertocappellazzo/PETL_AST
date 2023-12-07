@@ -1,7 +1,7 @@
 <div align="center">
 
 [![](https://img.shields.io/badge/Code-github.umbertocappellazzo%2FPETL_AST-blue)](https://umbertocappellazzo.github.io/)
-[![]()]()
+[![](https://img.shields.io/badge/Paper-arxiv.2312.03694-red)](https://arxiv.org/abs/2312.03694)
 
 # Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers
 
@@ -81,6 +81,12 @@ We acknowledge the support of the Digital Research Alliance of Canada (alliancec
 # Citation
 
 ```latex
-@misc{
+@misc{cappellazzo2023parameterefficient,
+      title={Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers}, 
+      author={Umberto Cappellazzo and Daniele Falavigna and Alessio Brutti and Mirco Ravanelli},
+      year={2023},
+      eprint={2312.03694},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS}
 }
 ```
