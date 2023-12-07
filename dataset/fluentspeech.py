@@ -19,12 +19,10 @@ from transformers import AutoFeatureExtractor, AutoProcessor
 
 
 class FluentSpeech(Dataset):
-    """FluentSpeechCommand dataset.
-    Made of short audio with different speakers asking something.
-    https://fluent.ai/fluent-speech-commands-a-dataset-for-spoken-language-understanding-research/
     """
-    URL = "http://fluent.ai:2052/jf8398hf30f0381738rucj3828chfdnchs.tar.gz"
-
+    FSC includes 30,043 English utterances, recorded at 16 kHz.
+    It includes 31 intent classes in total.
+    """
     def __init__(self, data_path, max_len_audio, max_len_AST, train: Union[bool, str] = True, apply_SpecAug= False, few_shot = False, samples_per_class = 1):
         if not isinstance(train, bool) and train not in ("train", "valid", "test"):
             raise ValueError(f"`train` arg ({train}) must be a bool or train/valid/test.")
@@ -110,9 +108,6 @@ class FluentSpeech(Dataset):
         
 
     def get_data(self):
-        
-        
-        
         processor = AutoFeatureExtractor.from_pretrained("MIT/ast-finetuned-audioset-10-10-0.4593", max_length=self.max_len_AST)
         
         base_path = os.path.join(self.data_path, "fluent_speech_commands_dataset")
@@ -124,7 +119,6 @@ class FluentSpeech(Dataset):
 
         for line in lines:
             items = line[:-1].split(',')
-            
 
             action, obj, location = items[-3:]
             pathh = os.path.join(base_path, items[1])
@@ -140,7 +134,6 @@ class FluentSpeech(Dataset):
                 )
             
         return np.array(x), np.array(y)
-    
     
     @property
     def transformations(self):

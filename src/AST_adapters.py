@@ -6,20 +6,14 @@ Created on Sat Dec  2 12:51:56 2023
 @author: umbertocappellazzo
 """
 
-
-#################################
-#                               #   
-#    Code for adapter-tuning.   #
-#                               #                                        
-#################################
-
-
 import torch 
 import torch.nn as nn
 from transformers import ASTModel
 from dataclasses import dataclass
 from transformers.models.audio_spectrogram_transformer.modeling_audio_spectrogram_transformer import ASTLayer, ASTEncoder, ASTOutput
 from typing import Optional, Tuple, Union
+
+# Code for adapter-tuning.
 
 
 #Here we define the Bottleneck and Convpass adapters.

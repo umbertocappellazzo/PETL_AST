@@ -6,15 +6,6 @@ Created on Sat Dec  2 12:55:19 2023
 @author: umbertocappellazzo
 """
 
-###############################################################################
-#                                                                             #   
-#    Code for prompt-tuning (Shallow and Deep) and prefix-tuning.             #
-#    The code for prompt-tuning is adapted from https://github.com/kmnp/vpt   #
-#                                                                             #
-###############################################################################
-
-
-
 import torch 
 import torch.nn as nn
 from transformers import ASTModel
@@ -26,6 +17,10 @@ from torch.nn.modules.utils import _pair
 from dataclasses import dataclass
 from transformers.models.audio_spectrogram_transformer.modeling_audio_spectrogram_transformer import ASTLayer, ASTEncoder, ASTAttention, ASTSelfAttention
 from typing import Optional, Tuple, Union
+
+
+#Code for prompt-tuning (Shallow and Deep) and prefix-tuning.
+#The code for prompt-tuning is adapted from https://github.com/kmnp/vpt
 
 
 # PROMPT configuration class.

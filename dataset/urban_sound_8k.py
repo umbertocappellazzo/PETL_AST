@@ -87,14 +87,12 @@ class Urban_Sound_8k(Dataset):
         else:
             fold = self.test_fold_nums
         
-        
         processor = AutoFeatureExtractor.from_pretrained("MIT/ast-finetuned-audioset-10-10-0.4593", max_length=self.max_len_AST)
         
         x, y = [], []
 
         with open(os.path.join(self.data_path, "UrbanSound8K/metadata","UrbanSound8K.csv")) as f:
             lines = f.readlines()[1:]
-        
         
         for line in lines:
             
@@ -120,7 +118,6 @@ class Urban_Sound_8k(Dataset):
             
         return np.array(x), np.array(y)
     
-    
     @property
     def class_ids(self):
         return {
@@ -135,4 +132,3 @@ class Urban_Sound_8k(Dataset):
              'siren': 8,
              'street_music': 9,
         }
-    

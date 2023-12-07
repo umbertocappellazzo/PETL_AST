@@ -37,7 +37,6 @@ def train_one_epoch(model, loader, optimizer, scheduler, device, criterion):
     
     return loss, accuracy
 
-
 def eval_one_epoch(model, loader, device, criterion):
     
     loss = 0.

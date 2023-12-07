@@ -34,7 +34,7 @@ def get_args_parser():
     parser = argparse.ArgumentParser('Parameter-efficient Transfer-learning of AST',
                                      add_help=False)
     parser.add_argument('--data_path', type= str, help = 'Path to the location of the dataset.')
-    parser.add_argument('--seed', default= 10)   #10 #19   Set it to None if you don't want to set it.
+    parser.add_argument('--seed', default= 10)   #Set it to None if you don't want to set it.
     parser.add_argument('--device', type= str, default= 'cuda', 
                         help='device to use for training/testing')
     parser.add_argument('--num_workers', type= int, default= 4)

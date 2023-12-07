@@ -105,10 +105,8 @@ class Google_Speech_Commands_v2(Dataset):
                 pathh = os.path.join(self.data_path, 'speech_commands_v0.02', line.strip())
                 wav,sampling_rate = soundfile.read(pathh)
                 
-                
                 x.append(processor(wav, sampling_rate= 16000, return_tensors='pt')['input_values'].squeeze(0))
                     
-                
                 y.append(
                     self.class_ids[line.split('/')[0]]    
                 )
@@ -180,4 +178,3 @@ class Google_Speech_Commands_v2(Dataset):
              'zero': 34,
              
         }
-    

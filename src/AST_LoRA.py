@@ -5,16 +5,7 @@ Created on Sat Dec  2 12:53:39 2023
 
 @author: umbertocappellazzo
 """
-
-
-######################
-#                    #   
-#   Code for LoRA.   #
-#                    #
-######################
-
-
-
+            
 import torch 
 import torch.nn as nn
 from transformers import ASTModel
@@ -22,6 +13,8 @@ import math
 from dataclasses import dataclass
 from transformers.models.audio_spectrogram_transformer.modeling_audio_spectrogram_transformer import ASTLayer, ASTEncoder, ASTAttention, ASTSelfAttention
 from typing import Optional, Tuple, Union
+
+#Code for LoRA.   
 
 
 # LoRA implementation for AST model.

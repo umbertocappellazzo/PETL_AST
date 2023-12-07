@@ -65,7 +65,6 @@ class ESC_50(Dataset):
         else:
             return self.x[index], self.y[index]
         
-    
     def get_few_shot_data(self, samples_per_class: int):
         x_few, y_few = [], []
         
@@ -94,7 +93,6 @@ class ESC_50(Dataset):
         
         processor = AutoFeatureExtractor.from_pretrained("MIT/ast-finetuned-audioset-10-10-0.4593", max_length=self.max_len_AST)
         
-
         x, y = [], []
 
         with open(os.path.join(self.data_path, "ESC-50/meta","esc50.csv")) as f:
@@ -122,7 +120,6 @@ class ESC_50(Dataset):
             )
             
         return np.array(x), np.array(y)
-    
     
     @property
     def class_ids(self):
@@ -178,4 +175,3 @@ class ESC_50(Dataset):
              'fireworks': 48,
              'hand_saw': 49,
         }
-    
