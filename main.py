@@ -277,7 +277,7 @@ def main(args):
                 best_params = model.state_dict()
                 
                 if args.save_best_ckpt:
-                    torch.save(best_params, os.getcwd() + args.output_path)   
+                    torch.save(best_params, os.getcwd() + args.output_path + f'/bestmodel_fold{fold}')   
             
             print("Train intent accuracy: ", train_acc*100)
             print("Valid intent accuracy: ", val_acc*100)           
