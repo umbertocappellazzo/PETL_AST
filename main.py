@@ -160,7 +160,7 @@ def main(args):
         # DATASETS
         
         if args.dataset_name == 'FSC':
-            train_data = FluentSpeech(args.data_path, max_len_AST, train= True, apply_SpecAug= True, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
+            train_data = FluentSpeech(args.data_path, max_len_AST, train= True, apply_SpecAug= False, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
             val_data = FluentSpeech(args.data_path, max_len_AST, train= "valid")
             test_data = FluentSpeech(args.data_path, max_len_AST, train= False)
         
@@ -172,7 +172,7 @@ def main(args):
             train_data = Urban_Sound_8k(args.data_path, max_len_AST, 'train', train_fold_nums= folds_train[fold], test_fold_nums= folds_test[fold], apply_SpecAug=True, few_shot=args.is_few_shot_exp, samples_per_class= args.few_shot_samples,)
             test_data = Urban_Sound_8k(args.data_path, max_len_AST, 'test', train_fold_nums= folds_train[fold], test_fold_nums= folds_test[fold])
         else:
-            train_data = Google_Speech_Commands_v2(args.data_path, max_len_AST, 'train', apply_SpecAug= True, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
+            train_data = Google_Speech_Commands_v2(args.data_path, max_len_AST, 'train', apply_SpecAug= False, few_shot= args.is_few_shot_exp, samples_per_class= args.few_shot_samples)
             val_data = Google_Speech_Commands_v2(args.data_path, max_len_AST, 'valid')
             test_data = Google_Speech_Commands_v2(args.data_path, max_len_AST, 'test')
     
