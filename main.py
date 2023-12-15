@@ -300,8 +300,8 @@ def main(args):
         
     
     print("Folds accuracy: ", accuracy_folds)
-    print("Avg accuracy over the 10 folds: ", np.mean(accuracy_folds))
-    print("Std accuracy over the 10 folds: ", np.std(accuracy_folds))
+    print(f"Avg accuracy over the {fold_number} fold(s): ", np.mean(accuracy_folds))
+    print(f"Std accuracy over the {fold_number} fold(s): ", np.std(accuracy_folds))
     
     total_time = time.time() - start_time
     total_time_str = str(datetime.timedelta(seconds=int(total_time)))
