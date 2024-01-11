@@ -9,7 +9,7 @@
 
 </div>
 
-This is the repository of the paper "Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers". The paper is currently under review. It explores the use of different parameter-efficient transfer-learning methods (**PETL**) applied to the Audio Spectrogram Transformer model for various audio and speech processing tasks. Our experiments reveal that *LoRA* and *Houlsby adapters* achieve the best results. We also show that adapters exhibit excellent performance in few-shot settings, whereas LoRA showcases superior scalability by leveraging an increasing number of parameters. We finally ablate the best configuration for both adapters and LoRA.
+This is the repository of the paper "**Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers**". The paper is currently under review. It explores the use of different parameter-efficient transfer-learning methods (**PETL**) applied to the Audio Spectrogram Transformer model for various audio and speech processing tasks. Our experiments reveal that *LoRA* and *Houlsby adapters* achieve the best results. We also show that adapters exhibit excellent performance in few-shot settings, whereas LoRA showcases superior scalability by leveraging an increasing number of parameters. We finally ablate the best configuration for both adapters and LoRA.
 
 This repo also contains the code for additional experiments we carried out in the appendix, namely combining multiple PETL methods together and finding the best adapter configuration given a fixed boudget of parameters.
 
