@@ -9,9 +9,9 @@
 
 </div>
 
-This is the repository of the paper "Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers". The paper is currently under review. It explores the use of different parameter-efficient transfer-learning methods (**PETL**) applied to the Audio Spectrogram Transformer model for various audio and speech processing tasks. Since *adapter-tuning* emerges as the best approach in various settings (e.g., few-shot learning, and when we increase the # of trainable params), we conduct some specific ablation studies on them, concluding that for the considered scenarios the best configuration entails the insertion of the adapter module ***parallel to and before the MHSA sub-layer***. We also show that residual connections can lead to drastic changes in the overall performance if overlooked.  
+This is the repository of the paper "Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers". The paper is currently under review. It explores the use of different parameter-efficient transfer-learning methods (**PETL**) applied to the Audio Spectrogram Transformer model for various audio and speech processing tasks. Our experiments reveal that *LoRA* and *Houlsby adapters* achieve the best results. We also show that adapters exhibit excellent performance in few-shot settings, whereas LoRA showcases superior scalability by leveraging an increasing number of parameters. We finally ablate the best configuration for both adapters and LoRA.
 
-This repo also contains the code for additional experiments we carried out (like combining multiple PETL methods together) but we did not include in the original submission for space constraints, nonetheless you can look at them in the appendix. 
+This repo also contains the code for additional experiments we carried out in the appendix, namely combining multiple PETL methods together and finding the best adapter configuration given a fixed boudget of parameters.
 
 
 
@@ -63,7 +63,7 @@ python3 main.py --data_path '/path_to_your_dataset' --dataset_name 'FSC' --metho
 
 If you want to run few-shot learning experiments, you just need to set the flag `--is_few_shot_exp` to `True` and specify the # of samples per class `--few_shot_samples`.
 
-Finally, if you want to replicate the ablations studies on the best location to insert the adapter module into an AST layer, you need to specify `--is_adapter_ablation = True`. Two additional arguments must be specified beside the standard used for adapters: `--befafter` --> whether to include the adapter before or after the selected sub-layer; `--location` --> whether to insert the adpater into the feed-forward sub-layer (FFN) or multi-head self-attention sub-layer (MHSA).
+Finally, if you want to replicate the ablation studies on the best location to insert the adapter module into an AST layer, you need to specify `--is_adapter_ablation = True`. Two additional arguments must be specified beside the standard used for adapters: `--befafter` --> whether to include the adapter before or after the selected sub-layer; `--location` --> whether to insert the adpater into the feed-forward sub-layer (FFN) or multi-head self-attention sub-layer (MHSA). For the ablation studies for LoRA, just specifcy `--is_lora_ablation = True`, and choose the matrix/matrices you want to be updated with LoRA: `'Wq', 'Wq,Wk', 'Wq,Wv', 'Wq,Wk,Wv,Wo'`. 
 
 
 # Contribution to the repository
