@@ -68,7 +68,7 @@ Finally, if you want to replicate the ablation studies on the best location to i
 
 
 # Contribution to the repository
-While this repository comprises three downstream tasks and 4 datasets, I'd be more than happy to integrate other downstream tasks/dataset. Feel free to make a PR if you want to add other datasets etc. 
+While this repository comprises three downstream tasks and 4 datasets, I'd be more than happy to integrate other downstream tasks/datasets. Feel free to make a PR if you want to add other datasets etc. 
 
 
 # Contact
