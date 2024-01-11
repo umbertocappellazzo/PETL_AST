@@ -9,7 +9,7 @@ Created on Sat Dec  2 16:35:28 2023
 import torch
 from torch.optim import AdamW
 from src.AST import AST
-from src.AST_LoRA import AST_LoRA
+from src.AST_LoRA import AST_LoRA, AST_LoRA_ablation
 from src.AST_adapters import AST_adapter, AST_adapter_hydra, AST_adapter_ablation
 from src.AST_prompt_tuning import AST_Prefix_tuning, PromptAST, Prompt_config
 from src.PETL_combination import AST_adapterPrompt, AST_LoRA_Adapter, AST_LoRA_Adapter_Prompt
@@ -64,6 +64,10 @@ def get_args_parser():
     # LoRA params.
     parser.add_argument('--reduction_rate_lora', type= int, default= 64)
     parser.add_argument('--alpha_lora', type= int, default= 8)
+
+    # Params for LoRA ablation studies.
+    parser.add_argument('--is_lora_ablation', type= bool, default= False)
+    parser.add_argument('--lora_config', type = str, default = 'Wq,Wv', choices = ['Wq','Wq,Wk','Wq,Wv','Wq,Wk,Wv,Wo'])
     
     # Prefix-tuning params.
     parser.add_argument('--prompt_len_pt', type= int, default =24)
@@ -92,7 +96,7 @@ def main(args):
     if args.use_wandb:
         wandb.init(project= args.project_name, name= args.exp_name,  entity= args.entity,
                    )
-        print(args) 
+    print(args) 
     
     
     torch.backends.cudnn.benchmark = True
@@ -191,6 +195,9 @@ def main(args):
         if args.is_adapter_ablation:
             model = AST_adapter_ablation(max_length= max_len_AST, num_classes= num_classes, final_output= final_output, reduction_rate= args.reduction_rate_adapter, seq_or_par= args.seq_or_par, location= args.location, adapter_block= args.adapter_block, before_after= args.befafter, model_ckpt= args.model_ckpt_AST).to(device)
             lr= train_params['lr_adapter']
+        elif args.is_lora_ablation:
+            model = AST_LoRA_ablation(max_length= max_len_AST, num_classes= num_classes, final_output= final_output, rank= args.reduction_rate_lora, alpha= args.alpha_lora, lora_config= args.lora_config, model_ckpt= args.model_ckpt_AST).to(device)
+            lr = train_params['lr_LoRA']
         elif method == 'full-FT':
             model = AST(max_length= max_len_AST, num_classes= num_classes, final_output= final_output, model_ckpt= args.model_ckpt_AST).to(device)
             lr = train_params['lr_fullFT']
