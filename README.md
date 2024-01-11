@@ -60,9 +60,10 @@ For example, suppose we want to test the adapter with configuration Bottleneck, 
 python3 main.py --data_path '/path_to_your_dataset' --dataset_name 'FSC' --method 'adapter' --seq_or_par 'parallel' --reduction_rate_adapter 64 --adapter_type 'Pfeiffer' --apply_residual False --adapter_block 'Bottleneck'
 ```
 
-
+### Few-shot Experiments
 If you want to run few-shot learning experiments, you just need to set the flag `--is_few_shot_exp` to `True` and specify the # of samples per class `--few_shot_samples`.
 
+### Ablation studies on the optimal configuration for adapter/LoRA
 Finally, if you want to replicate the ablation studies on the best location to insert the adapter module into an AST layer, you need to specify `--is_adapter_ablation = True`. Two additional arguments must be specified beside the standard used for adapters: `--befafter` --> whether to include the adapter before or after the selected sub-layer; `--location` --> whether to insert the adpater into the feed-forward sub-layer (FFN) or multi-head self-attention sub-layer (MHSA). For the ablation studies for LoRA, just specifcy `--is_lora_ablation = True`, and choose the matrix/matrices you want to be updated with LoRA: `'Wq', 'Wq,Wk', 'Wq,Wv', 'Wq,Wk,Wv,Wo'`. 
 
 
