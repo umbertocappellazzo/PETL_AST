@@ -112,9 +112,24 @@ This paper investigates the use of *Mixture of Experts (MoE)* for the efficient 
 
 <div align="center">
 
-|     <img src="images/Soft_MoA.png" width='400'/>    |
+|     <img src="images/Soft_MoA.png" width='800'/>    |
 | :-------------------------------------------------: |
-| **a)Adapter insertion into each AST layer. b)Dense-MoA. c) Soft-MoA.** |
+| **a) Adapter insertion into each AST layer. b) Dense-MoA. c) Soft-MoA.** |
 
 
 </div>
+
+
+# Citation
+
+```latex
+@misc{cappellazzo2024efficient,
+      title={Efficient Fine-tuning of Audio Spectrogram Transformers via Soft Mixture of Adapters}, 
+      author={Umberto Cappellazzo and Daniele Falavigna and Alessio Brutti},
+      year={2024},
+      eprint={2402.00828},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS}
+}
+```
+
