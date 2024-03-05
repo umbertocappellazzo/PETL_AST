@@ -65,7 +65,7 @@ Each PETL method comes with some specific parameters. We provide a brief descrip
 For example, suppose we want to test the adapter with configuration Bottleneck, parallel, Pfeiffer, RR = 64 to the ESC-50 dataset. Then, the command to run is:
 
 ```bash
-python3 main.py --data_path '/path_to_your_dataset' --dataset_name 'FSC' --method 'adapter' --seq_or_par 'parallel' --reduction_rate_adapter 64 --adapter_type 'Pfeiffer' --apply_residual False --adapter_block 'Bottleneck'
+python3 main.py --data_path '/path_to_your_dataset' --dataset_name 'FSC' --method 'adapter' --seq_or_par 'parallel' --reduction_rate_adapter 64 --adapter_type 'Pfeiffer' --apply_residual False --adapter_block 'bottleneck'
 ```
 
 ### Few-shot Experiments
