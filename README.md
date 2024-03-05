@@ -108,7 +108,7 @@ We acknowledge the support of the Digital Research Alliance of Canada (alliancec
 
 </div>
 
-This paper investigates the use of *Mixture of Experts (MoE)* for the efficient fine-tuning of AST. Specifically, we adapt the recent [Soft MoE](https://arxiv.org/abs/2308.00951) method to our parameter-efficient setting, where each expert is represented by an adapter module. We call it **Soft-MoA** (Soft Mixture of Adapters). Soft-MoA achieves performance parity with the dense counterpart while trimming down the computational cost. Moreover, it demonstrates superior performance over the traditional single adapter.
+This paper investigates the use of *Mixture of Experts (MoE)* for the efficient fine-tuning of AST. Specifically, we adapt the recent [Soft MoE](https://arxiv.org/abs/2308.00951) method to our parameter-efficient setting, where each expert is represented by an adapter module. We call it **Soft-MoA** (Soft Mixture of Adapters). Soft-MoA achieves performance parity with the dense counterpart (Dense-MoA) while trimming down the computational cost. Moreover, it demonstrates superior performance over the traditional single adapter.
 
 <div align="center">
 
@@ -118,6 +118,24 @@ This paper investigates the use of *Mixture of Experts (MoE)* for the efficient 
 
 
 </div>
+
+# Running an experiment
+
+Running an experiment with Dense and Soft MoA is a breeze. We follow the same procedure we used for paper **[1]**. We just need to set the `--method` parameter to `Dense-MoA` or `Soft-MoA`, and specify some ad-hoc parameters:
+
+- `--reduction_rate_moa`: exactly as for the other PETL methods, we need to specify the reduction rate for each adapter expert. The higher the reduction rate, the smaller the bottleneck dimension.
+- `--adapter_type_moa`: **Pfeiffer** or **Houlsby** configuration.
+- `--location_moa`: whether to apply the Soft/Dense MoA layers parallel to the **MHSA** or **FFN** blocks. If --adapter_type_moa == Houlsby, MHSA and FFN are auomatically selected.
+- `--adapter_module_moa`: the type of adapter. We support **bottleneck** and **convpass** as of now.
+- `--num_adapters`: how many adapters are used for each Soft/Dense MoA layer. In our experiments, this value ranges between 2 and 15.
+- `--num_slots`: the number of slots used in Soft-MoA. Usually it is set to 1 or 2. [**NB**: only used in Soft-MoA]
+- `--normalize`: whether to L2 normalize the input vector and the Phi matrix as proposed in the original [Soft MoE paper](https://arxiv.org/pdf/2308.00951.pdf) (see section 2.3, "Normalization"). As stated in the paper, the normalization operation has little impact if the hidden size of the model is small like in our case (e.g., 768), thus we did not use the normalization. [**NB**: only used in Soft-MoA]
+
+For example, we want to test Soft-MoA on the FSC dataset. We choose to include the Soft-MoA layer only in the MHSA layers, and we use 7 botteneck adapters. Then, the command to run is:
+
+```bash
+python3 main.py --data_path '/path_to_your_dataset' --dataset_name 'FSC' --method 'Soft-MoA' --reduction_rate_moa 128 --adapter_type_moa 'Pfeiffer' --location 'MHSA' --adapter_module_moa 'bottleneck' --num_adapters 7 --num_slots 1 --normalize False
+```
 
 
 # Citation
