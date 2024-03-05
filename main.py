@@ -13,6 +13,7 @@ from src.AST_LoRA import AST_LoRA, AST_LoRA_ablation
 from src.AST_adapters import AST_adapter, AST_adapter_hydra, AST_adapter_ablation
 from src.AST_prompt_tuning import AST_Prefix_tuning, PromptAST, Prompt_config
 from src.PETL_combination import AST_adapterPrompt, AST_LoRA_Adapter, AST_LoRA_Adapter_Prompt
+from src.MoA import AST_MoA, AST_SoftMoA
 from dataset.fluentspeech import FluentSpeech
 from dataset.esc_50 import ESC_50
 from dataset.urban_sound_8k import Urban_Sound_8k
@@ -43,14 +44,24 @@ def get_args_parser():
     parser.add_argument('--output_path', type= str, default= '/checkpoints')
     
     parser.add_argument('--dataset_name', type= str, choices = ['FSC', 'ESC-50', 'urbansound8k', 'GSC'])
-    parser.add_argument('--method', type= str, choices = ['linear', 'full-FT', 'adapter', 'prompt-tuning', 'prefix-tuning', 'LoRA', 'BitFit', 'adapter-Hydra', 'adapter+LoRA', 'adapter+prompt', 'adapter+prompt+LoRA'])
-    
+    parser.add_argument('--method', type= str, choices = ['linear', 'full-FT', 'adapter', 'prompt-tuning', 'prefix-tuning', 
+                                                          'LoRA', 'BitFit', 'adapter-Hydra', 'adapter+LoRA', 'adapter+prompt',
+                                                          'adapter+prompt+LoRA', 'Dense-MoA', 'Soft-MoA'])
     # Adapter params.
     parser.add_argument('--seq_or_par', default = 'parallel', choices=['sequential','parallel'])
     parser.add_argument('--reduction_rate_adapter', type= int, default= 64)
     parser.add_argument('--adapter_type', type= str, default = 'Pfeiffer', choices = ['Houlsby', 'Pfeiffer'])
     parser.add_argument('--apply_residual', type= bool, default=False)
     parser.add_argument('--adapter_block', type= str, default='bottleneck', choices = ['bottleneck', 'convpass'])
+    
+    # Soft/Dense MoA params.
+    parser.add_argument('--reduction_rate_moa', type= int, default= 128) 
+    parser.add_argument('--adapter_type_moa', type= str, default= 'Pfeiffer', choices = ['Houlsby', 'Pfeiffer'])
+    parser.add_argument('--location_moa', type = str, default='MHSA', choices = ['MHSA','FFN'])
+    parser.add_argument('--adapter_module_moa', type= str, default= 'bottleneck', choices = ['bottleneck', 'convpass'])
+    parser.add_argument('--num_adapters', type= int, default= 7)
+    parser.add_argument('--num_slots', type = int, default= 1)
+    parser.add_argument('--normalize', type = bool, default= False)
     
     # Adapter Hydra params.
     parser.add_argument('--location_hydra', type = str, default='FFN', choices = ['MHSA','FFN'])
@@ -242,6 +253,12 @@ def main(args):
             prompt_config = Prompt_config(NUM_TOKENS= args.prompt_len_prompt, DEEP= args.is_deep_prompt, DROPOUT= args.drop_prompt, FINAL_OUTPUT=final_output)
             model = AST_LoRA_Adapter_Prompt(prompt_config= prompt_config, max_length= max_len_AST , num_classes= num_classes, final_output= final_output, reduction_rate= args.reduction_rate_adapter, adapter_type= args.adapter_type, seq_or_par= args.seq_or_par, apply_residual= args.apply_residual, adapter_block= args.adapter_block, rank= args.reduction_rate_lora, alpha= args.alpha_lora, model_ckpt= args.model_ckpt_AST).to(device)
             lr = train_params['lr_adapter']
+        elif method == 'Dense-MoA':
+            model = AST_MoA(max_length= max_len_AST, num_classes= num_classes, final_output= final_output, reduction_rate= args.reduction_rate_moa, adapter_type= args.adapter_type_moa, location= args.location_moa, adapter_module= args.adapter_module_moa, num_adapters= args.num_adapters, model_ckpt= args.model_ckpt_AST).to(device)
+            lr = train_params['lr_MoA']
+        elif method == 'Soft-MoA':
+            model = AST_SoftMoA(max_length= max_len_AST, num_classes= num_classes, final_output= final_output, reduction_rate= args.reduction_rate_moa, adapter_type= args.adapter_type_moa, location= args.location_moa, adapter_module= args.adapter_module_moa, num_adapters= args.num_adapters, num_slots= args.num_slots, normalize= args.normalize, model_ckpt= args.model_ckpt_AST).to(device)
+            lr = train_params['lr_MoA']
         else:
             raise ValueError('The method you chose is not supported as of now.')
             

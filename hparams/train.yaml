@@ -6,6 +6,7 @@ lr_FitBit: 0.005
 lr_prompt: 0.01 # Used for SPT, DPT, and Prefix T.
 lr_fullFT: 0.00005
 lr_linear: 0.001
+lr_MoA: 0.005
 
 weight_decay: 0.1
 
