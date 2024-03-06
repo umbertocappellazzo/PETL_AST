@@ -131,7 +131,7 @@ Running an experiment with Dense and Soft MoA is a breeze. We follow the same pr
 - `--num_slots`: the number of slots used in Soft-MoA. Usually it is set to 1 or 2. [**NB**: only used in Soft-MoA]
 - `--normalize`: whether to L2 normalize the input vector and the Phi matrix as proposed in the original [Soft MoE paper](https://arxiv.org/pdf/2308.00951.pdf) (see section 2.3, "Normalization"). As stated in the paper, the normalization operation has little impact if the hidden size of the model is small like in our case (e.g., 768), thus we did not use the normalization. [**NB**: only used in Soft-MoA]
 
-For example, we want to test Soft-MoA on the FSC dataset. We choose to include the Soft-MoA layer only in the MHSA layers, and we use 7 botteneck adapters. Then, the command to run is:
+For example, suppose we want to test Soft-MoA on the FSC dataset. Plus, we choose to include the Soft-MoA layer only in the MHSA layers, and we use 7 botteneck adapters. Then, the command to run is:
 
 ```bash
 python3 main.py --data_path '/path_to_your_dataset' --dataset_name 'FSC' --method 'Soft-MoA' --reduction_rate_moa 128 --adapter_type_moa 'Pfeiffer' --location 'MHSA' --adapter_module_moa 'bottleneck' --num_adapters 7 --num_slots 1 --normalize False
