@@ -1,4 +1,4 @@
-This repository contains the official code of the papers: **[Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers](https://arxiv.org/abs/2312.03694)** :rocket: **[1]**  and **[Efficient Fine-tuning of Audio Spectrogram Transformers via Soft Mixture of Adapters](https://arxiv.org/abs/2402.00828)** :fire: **[2]**. 
+This repository contains the official code of the papers: **[Parameter-Efficient Transfer Learning of Audio Spectrogram Transformers](https://arxiv.org/abs/2312.03694)** :rocket: **[1]**  and **[Efficient Fine-tuning of Audio Spectrogram Transformers via Soft Mixture of Adapters](https://arxiv.org/abs/2402.00828)** :fire: **[2]** (**accepted for publication at Interspeech 2024**). 
 
 Both papers study how to apply parameter-efficient transfer learning (*PETL*) methods to the Audio Spectrogram Transformer (AST) model for various audio/speech downstream tasks. Whereas **[1]** provides a comprehensive overview of PETL methods (prompt-tuning, LoRA, adapters) under different scenarios and constraints, **[2]** explores how to efficiently harness the Mixture of Experts architecture for PETL. 
 
@@ -108,7 +108,7 @@ We acknowledge the support of the Digital Research Alliance of Canada (alliancec
 
 </div>
 
-This paper investigates the use of *Mixture of Experts (MoE)* for the efficient fine-tuning of AST. Specifically, we adapt the recent [Soft MoE](https://arxiv.org/abs/2308.00951) method to our parameter-efficient setting, where each expert is represented by an adapter module. We call it **Soft-MoA** (Soft Mixture of Adapters). Soft-MoA achieves performance parity with the dense counterpart (Dense-MoA) while trimming down the computational cost. Moreover, it demonstrates superior performance over the traditional single adapter.
+**The paper has been accepted at Interspeech 2024**. It investigates the use of *Mixture of Experts (MoE)* for the efficient fine-tuning of AST. Specifically, we adapt the recent [Soft MoE](https://arxiv.org/abs/2308.00951) method to our parameter-efficient setting, where each expert is represented by an adapter module. We call it **Soft-MoA** (Soft Mixture of Adapters). Soft-MoA achieves performance parity with the dense counterpart (Dense-MoA) while trimming down the computational cost. Moreover, it demonstrates superior performance over the traditional single adapter.
 
 <div align="center">
 
