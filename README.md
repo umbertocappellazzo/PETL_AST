@@ -17,10 +17,7 @@ Below we include all the details to replicate our results.
 
 </div>
 
-This paper explores the use of different **PETL** methods applied to the Audio Spectrogram Transformer model for various audio and speech processing tasks. Our experiments reveal that *LoRA* and *Houlsby adapters* achieve the best results. We also show that adapters exhibit excellent performance in few-shot settings, whereas LoRA showcases superior scalability by leveraging an increasing number of parameters. We finally ablate the best configuration for both adapters and LoRA.
-
-We also include the code for additional experiments we carried out in the appendix, namely combining multiple PETL methods together and finding the best adapter configuration given a fixed budget of parameters.
-
+**The paper has been accepted at the 2024 IEEE MLSP Workshop**. This paper explores the use of different **PETL** methods applied to the Audio Spectrogram Transformer model for various audio and speech processing tasks. Furthermore, we propose a new adapter design that exploits the convolution module of the Conformer model, leading to superior performance over the standard PETL approaches and surpassing or achieving performance parity with full fine-tuning by updating only 0.29% of the parameters.
 
 
 <div align="center">
@@ -70,9 +67,6 @@ python3 main.py --data_path '/path_to_your_dataset' --dataset_name 'FSC' --metho
 
 ### Few-shot Experiments
 If you want to run few-shot learning experiments, you just need to set the flag `--is_few_shot_exp` to `True` and specify the # of samples per class `--few_shot_samples`.
-
-### Ablation studies on the optimal configuration for adapter/LoRA
-Finally, if you want to replicate the ablation studies on the best location to insert the adapter module into an AST layer, you need to specify `--is_adapter_ablation = True`. Two additional arguments must be specified beside the standard used for adapters: `--befafter` --> whether to include the adapter before or after the selected sub-layer; `--location` --> whether to insert the adpater into the feed-forward sub-layer (FFN) or multi-head self-attention sub-layer (MHSA). For the ablation studies for LoRA, just specifcy `--is_lora_ablation = True`, and choose the matrix/matrices you want to be updated with LoRA: `'Wq', 'Wq,Wk', 'Wq,Wv', 'Wq,Wk,Wv,Wo'`. 
 
 # Contact
 
