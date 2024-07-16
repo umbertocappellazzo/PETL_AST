@@ -7,6 +7,9 @@ lr_prompt: 0.01 # Used for SPT, DPT, and Prefix T.
 lr_fullFT: 0.00005
 lr_linear: 0.001
 lr_MoA: 0.005
+lr_WAV_linear: 0.001
+lr_WAV_fullFT: 0.00005
+lr_WAV_adapter: 0.005
 
 weight_decay: 0.1
 
@@ -23,20 +26,27 @@ hidden_size: 768
 max_len_AST_FSC: 400
 num_classes_FSC: 31
 batch_size_FSC: 32
-epochs_FSC: 75
+epochs_FSC_AST: 75
+epochs_FSC_WAV: 50
 
 max_len_AST_ESC: 500
 num_classes_ESC: 50
 batch_size_ESC: 32
-epochs_ESC: 50
+epochs_ESC_AST: 50
 
 max_len_AST_US8K: 400
 num_classes_US8K: 10
 batch_size_US8K: 32
-epochs_US8K: 30
+epochs_US8K_AST: 30
 
 max_len_AST_GSC: 100
 num_classes_GSC: 35
 batch_size_GSC: 128
-epochs_GSC: 75
+epochs_GSC_AST: 75
+epochs_GSC_WAV: 50
+
+max_len_AST_IEMO: 800
+num_classes_IEMO: 4
+batch_size_IEMO: 32
+epochs_IEMO: 20
 
