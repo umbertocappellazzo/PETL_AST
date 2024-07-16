@@ -60,10 +60,10 @@ Each PETL method comes with some specific parameters. We provide a brief descrip
 - **prompt-tuning**: `prompt_len_prompt` --> how many prompts to use; `is_deep_prompt` --> set to `True` if you want to enable *deep prompt-tuning* (DPT), otherwise *shallow prompt-tuning* (SPT); `drop_prompt` --> the dropout rate for the prompts. In our experiments we set it to `0.`.
 - **LoRA**: `reduction_rate_lora` --> please see `reduction_rate_adapter`; `alpha_lora` --> the LoRA_alpha as defined in the original paper. This is used for scaling (e.g., s = alpha_lora/RR).
 
-For example, suppose we want to test the adapter with configuration Conformer, parallel, Pfeiffer, RR = 64, and test it on the FSC dataset. Then, the command to run is:
+For example, suppose we want to test the adapter with configuration Conformer, parallel, Pfeiffer, RR = 64, and test it on the FSC dataset for the AST model. Then, the command to run is:
 
 ```bash
-python3 main.py --data_path '/path_to_your_dataset' --dataset_name 'FSC' --method 'adapter' --adapter_type 'Conformer' --seq_or_par 'parallel' --reduction_rate_adapter 64 --adapter_type 'Pfeiffer' --apply_residual False --adapter_block 'conformer'
+python3 main.py --data_path '/path_to_your_dataset' --is_AST True --dataset_name 'FSC' --method 'adapter' --seq_or_par 'parallel' --reduction_rate_adapter 64 --adapter_type 'Pfeiffer' --apply_residual False --adapter_block 'conformer'
 ```
 
 ### Few-shot Experiments
