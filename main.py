@@ -46,14 +46,14 @@ def get_args_parser():
                         help='max length for the audio signal --> it will be cut. Only for IEMOCAP.')
     parser.add_argument('--save_best_ckpt', type= bool, default= False)
     parser.add_argument('--output_path', type= str, default= '/checkpoints')
-    parser.add_argument('--is_AST', type= bool, default = False, help ='Whether we are using ther AST model or not (i.e., wav2vec 2.0 etc.).')
+    parser.add_argument('--is_AST', type= bool, default = True, help ='Whether we are using ther AST model or not (i.e., wav2vec 2.0 etc.).')
     
-    parser.add_argument('--dataset_name', type= str, default= 'IEMOCAP', choices = ['FSC', 'ESC-50', 'urbansound8k', 'GSC', 'IEMOCAP'])
+    parser.add_argument('--dataset_name', type= str, choices = ['FSC', 'ESC-50', 'urbansound8k', 'GSC', 'IEMOCAP'])
     parser.add_argument('--method', type= str, default='adapter',choices = ['linear', 'full-FT', 'adapter', 'prompt-tuning', 'prefix-tuning', 
                                                           'LoRA', 'BitFit', 'Dense-MoA', 'Soft-MoA'])
     # Adapter params.
     parser.add_argument('--seq_or_par', default = 'parallel', choices=['sequential','parallel'])
-    parser.add_argument('--reduction_rate_adapter', type= int, default= 64)
+    parser.add_argument('--reduction_rate_adapter', type= int, default= 96)
     parser.add_argument('--adapter_type', type= str, default = 'Pfeiffer', choices = ['Houlsby', 'Pfeiffer'])
     parser.add_argument('--apply_residual', type= bool, default=False)
     parser.add_argument('--adapter_block', type= str, default='conformer', choices = ['bottleneck', 'conformer'])
