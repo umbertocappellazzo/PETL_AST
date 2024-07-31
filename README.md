@@ -2,7 +2,7 @@ This repository contains the official code of the papers: **[Parameter-Efficient
 
 Both papers study how to apply parameter-efficient transfer learning (*PETL*) methods to the Audio Spectrogram Transformer (AST) model for various audio/speech downstream tasks. Whereas **[1]** provides a comprehensive overview of PETL methods (prompt-tuning, LoRA, adapters) under different scenarios and constraints, **[2]** explores how to efficiently harness the Mixture of Experts architecture for PETL. 
 
-Below we include all the details to replicate our results.
+Below we include all the details to replicate our results. **IMPORTANT**: make sure to set up an environment that is compatible with the one we used for our experiments, so please install the same packages versions using the *requirements.txt* file.  
 
 ---
 
